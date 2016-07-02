@@ -1,13 +1,12 @@
 ---
 isChild: true
-title:   Interacting with Databases
+title:   操作数据库
 anchor:  databases_interacting
 ---
 
-## Interacting with Databases {#databases_interacting_title}
+## 操作数据库 {#databases_interacting_title}
 
-When developers first start to learn PHP, they often end up mixing their database interaction up with their
-presentation logic, using code that might look like this:
+当开发者初次学习 PHP 时，他们经常会将数据库操作与表示层的逻辑混在一起，写出就像这样自的代码：
 
 {% highlight php %}
 <ul>
@@ -19,13 +18,11 @@ foreach ($db->query('SELECT * FROM table') as $row) {
 </ul>
 {% endhighlight %}
 
-This is bad practice for all sorts of reasons, mainly that its hard to debug, hard to test, hard to read and it is
-going to output a lot of fields if you don't put a limit on there.
+这是非常糟糕的代码，糟糕提现在很多地方，比如说很难调试、很难测试、很难阅读，而且如果你不设置一个上限的话，它将会输出大量的字段。
 
-While there are many other solutions to doing this - depending on if you prefer [OOP](/#object-oriented-programming) or
-[functional programming](/#functional-programming) - there must be some element of separation.
+根据你更喜欢 [OOP](#object-oriented-programming) 还是[函数式编程](#functional-programming)，写出来的代码可能有所不同，不过都必须在数据库操作和表示层逻辑之间进行一定的分离。
 
-Consider the most basic step:
+考虑最基本的步骤：
 
 {% highlight php %}
 <?php
@@ -34,15 +31,13 @@ function getAllFoos($db) {
 }
 
 foreach (getAllFoos($db) as $row) {
-    echo "<li>".$row['field1']." - ".$row['field1']."</li>"; // BAD!!
+    echo "<li>".$row['field1']." - ".$row['field1']."</li>"; // 糟糕的！
 }
 {% endhighlight %}
 
-That is a good start. Put those two items in two different files and you've got some clean separation.
+这是一个不错的开始，将这两部分放到两个不同的文件里，你就实现了比较干净的分离。
 
-Create a class to place that method in and you have a "Model". Create a simple `.php` file to put the presentation
-logic in and you have a "View", which is very nearly [MVC] - a common OOP architecture for most
-[frameworks](/#frameworks).
+建立一个类并将那个方法放进去，你就得到了一个「模型」；把表示层逻辑放到一个简单的 `.php` 文件里，你就得到了一个「视图」。这样做就与 [MVC]——一个被大多数[框架](#frameworks)所采用的 OOP 架构——非常接近了。
 
 **foo.php**
 
@@ -50,15 +45,15 @@ logic in and you have a "View", which is very nearly [MVC] - a common OOP archit
 <?php
 $db = new PDO('mysql:host=localhost;dbname=testdb;charset=utf8', 'username', 'password');
 
-// Make your model available
+// 引入模型
 include 'models/FooModel.php';
 
-// Create an instance
+// 建立一个实例
 $fooModel = new FooModel($db);
-// Get the list of Foos
+// 获得 Foos
 $fooList = $fooModel->getAllFoos();
 
-// Show the view
+// 展示视图
 include 'views/foo-list.php';
 {% endhighlight %}
 
@@ -90,14 +85,11 @@ class FooModel
 <?php endforeach ?>
 {% endhighlight %}
 
-This is essentially the same as what most modern frameworks are doing, albeit a little more manual. You might not
-need to do all of that every time, but mixing together too much presentation logic and database interaction can be a
-real problem if you ever want to [unit-test](/#unit-testing) your application.
+这与大多数现代框架所做的工作完全一致，尽管得亲手多做一点事情。你不一定每次都需要这样做，但是如果你想对程序进行 [单元测试](#unit-testing)的话，把大量的表示层逻辑和数据库操作混合在一起却会带来大问题。
 
-[PHPBridge] has a great resource called [Creating a Data Class] which covers a very similar topic, and is great for
-developers just getting used to the concept of interacting with databases.
+[PHPBridge] 有一篇不错的文章，叫做[建立一个数据类]，其中包含了非常相似的内容，对于刚开始学习操作数据库的开发者来说是很不错的参考。
 
 
 [MVC]: http://code.tutsplus.com/tutorials/mvc-for-noobs--net-10488
 [PHPBridge]: http://phpbridge.org/
-[Creating a Data Class]: http://phpbridge.org/intro-to-php/creating_a_data_class
+[建立一个数据类]: http://phpbridge.org/intro-to-php/creating_a_data_class

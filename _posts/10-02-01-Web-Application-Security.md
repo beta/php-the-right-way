@@ -1,9 +1,10 @@
 ---
+title: Web 应用安全
 isChild: true
 anchor:  web_application_security
 ---
 
-## Web Application Security {#web_application_security_title}
+## Web 应用安全 {#web_application_security_title}
 
 There are bad people ready and willing to exploit your web application. It is important that you take necessary
 precautions to harden your web application's security. Luckily, the fine folks at

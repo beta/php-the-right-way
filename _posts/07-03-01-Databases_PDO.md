@@ -1,14 +1,12 @@
 ---
 isChild: true
-title:   PDO Extension
+title:   PDO 扩展
 anchor:  pdo_extension
 ---
 
-## PDO Extension {#pdo_extension_title}
+## PDO 扩展 {#pdo_extension_title}
 
-[PDO] is a database connection abstraction library &mdash; built into PHP since 5.1.0 &mdash; that provides a common
-interface to talk with many different databases. For example, you can use basically identical code to interface with
-MySQL or SQLite:
+自 5.1.0 版本开始 PHP 引入了 [PDO]，这是一个数据库连接抽象库，提供了访问多种数据库的一组共同的接口。例如，你基本可以使用相同的代码来访问 MySQL 和 SQLite：
 
 {% highlight php %}
 <?php
@@ -25,15 +23,11 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
 echo htmlentities($row['some_field']);
 {% endhighlight %}
 
-PDO will not translate your SQL queries or emulate missing features; it is purely for connecting to multiple types of
-database with the same API.
+PDO 不会翻译你的 SQL 查询或者模拟缺失的功能，它只是用于借助同一组 API 来连接多种类型的数据库。
 
-More importantly, `PDO` allows you to safely inject foreign input (e.g. IDs) into your SQL queries without worrying
-about database SQL injection attacks.
-This is possible using PDO statements and bound parameters.
+更重要的是，PDO 可以让你将外部输入（例如 ID）安全地注入到 SQL 查询中，而不需要担心数据 SQL 注入攻击的发生。使用 PDO 语句和绑定的参数可以做到这一点。
 
-Let's assume a PHP script receives a numeric ID as a query parameter. This ID should be used to fetch a user record
-from a database. This is the `wrong` way to do this:
+我们假设一个 PHP 脚本会接受一个数字 ID 作为查询参数，这个 ID 将会用来从数据库获取一个用户记录。下面是一种错误的做法：
 
 {% highlight php %}
 <?php
@@ -41,10 +35,7 @@ $pdo = new PDO('sqlite:/path/db/users.db');
 $pdo->query("SELECT name FROM users WHERE id = " . $_GET['id']); // <-- NO!
 {% endhighlight %}
 
-This is terrible code. You are inserting a raw query parameter into a SQL query. This will get you hacked in a
-heartbeat, using a practice called [SQL Injection]. Just imagine if a hacker passes in an inventive `id` parameter by
-calling a URL like `http://domain.com/?id=1%3BDELETE+FROM+users`. This will set the `$_GET['id']` variable to `1;DELETE
-FROM users` which will delete all of your users! Instead, you should sanitize the ID input using PDO bound parameters.
+这段代码写得非常烂。你向 SQL 查询中插入了一个未经处理的参数，如果使用一种叫做 [SQL 注入]的技术，你会马上遭到攻击。想象一个攻击者通过类似 `http://domain.com/?id=1%3BDELETE+FROM+users` 这样的 URL 传入一个不一般的 `id` 参数，变量 `$_GET['id']` 的值就会变成 `1;DELETE FROM users`，从而删掉你所有的用户！正确的做法是使用 PDO 绑定参数来给输入的 ID 消消毒。
 
 {% highlight php %}
 <?php
@@ -55,23 +46,18 @@ $stmt->bindParam(':id', $id, PDO::PARAM_INT); // <-- Automatically sanitized for
 $stmt->execute();
 {% endhighlight %}
 
-This is correct code. It uses a bound parameter on a PDO statement. This escapes the foreign input ID before it is
-introduced to the database preventing potential SQL injection attacks.
+这才是正确的代码。它在 PDO 语句中使用了绑定参数，在将输入的 ID 传递到数据库之前，先将其进行转义，从而预防潜在的 SQL 注入攻击。
 
-For writes, such as INSERT or UPDATE, it's especially critical to still [filter your data](#data_filtering) first and sanitize it for other things (removal of HTML tags, JavaScript, etc).  PDO will only sanitize it for SQL, not for your application.
+对于写入操作，例如 `INSERT` 和 `UPDATE`，必须先[过滤数据](#data_filtering)并处理掉其他的一些内容（例如删除掉 HTML 标签、JavaScript 代码等等）。PDO 只会为 SQL 而不会为你的程序清洁输入。
 
-* [Learn about PDO]
+* [了解 PDO]
 
-You should also be aware that database connections use up resources and it was not unheard-of to have resources
-exhausted if connections were not implicitly closed, however this was more common in other languages. Using PDO you can
-implicitly close the connection by destroying the object by ensuring all remaining references to it are deleted, i.e.
-set to NULL. If you don't do this explicitly, PHP will automatically close the connection when your script ends -
-unless of course you are using persistent connections.
+你还应该注意数据库连接会占用资源，而且如果连接没有被隐式地关闭的话，耗尽资源并不是没发生过的事情。不过，这种情况在其他的语言中会更普遍一些。使用 PDO 的话你可以通过将所有的引用删除掉（例如设置成 `NULL`）来销毁一个对象，从而关闭一个连接。如果你不显式地这样做，PHP 也会在脚本运行结束时自动关闭连接，当然，除非你用的是永久性连接。
 
-* [Learn about PDO connections]
+* [了解 PDO 连接]
 
 
 [pdo]: http://php.net/pdo
-[SQL Injection]: http://wiki.hashphp.org/Validation
-[Learn about PDO]: http://php.net/book.pdo
-[Learn about PDO connections]: http://php.net/pdo.connections
+[SQL 注入]: http://wiki.hashphp.org/Validation
+[了解 PDO]: http://php.net/book.pdo
+[了解 PDO 连接]: http://php.net/pdo.connections

@@ -1,33 +1,24 @@
 ---
+title: 复杂问题
 isChild: true
 anchor:  complex_problem
 ---
 
-## Complex Problem {#complex_problem_title}
+## 复杂问题 {#complex_problem_title}
 
-If you have ever read about Dependency Injection then you have probably seen the terms *"Inversion of Control"* or
-*"Dependency Inversion Principle"*. These are the complex problems that Dependency Injection solves.
+如果你曾经听说过依赖注入的话，那么你或许也见过**控制反转**和**依赖反转原则**这两个名字，它们都是由依赖注入解决的复杂问题。
 
-### Inversion of Control
+### 控制反转
 
-Inversion of Control is as it says, "inverting the control" of a system by keeping organisational control entirely
-separate from our objects. In terms of Dependency Injection, this means loosening our dependencies by controlling and
-instantiating them elsewhere in the system.
+控制反转就像字面上的意思一样，通过对对象保持完全分离的、有组织的控制从而把系统的「控制反转过来」。从依赖注入的角度来说，控制反转通过在系统其他的地方控制和实例化依赖使之得到了减轻。
 
-For years, PHP frameworks have been achieving Inversion of Control, however, the question became, which part of control
-are you inverting, and where to? For example, MVC frameworks would generally provide a super object or base controller
-that other controllers must extend to gain access to its dependencies. This **is** Inversion of Control, however,
-instead of loosening dependencies, this method simply moved them.
+之前的很多年里，PHP 框架们都在尝试着实现控制反转。不过问题来了，哪个部分的控制需要被反转，又该反转到什么地方呢？比如说，MVC 框架通常都会提供一个控制器的超类或者基类，其他的控制器必须继承这个类来获得它们所需的依赖。这**就是**控制反转，不过这样做并不是减轻了依赖，而是简单粗暴地移动了依赖的位置。
 
-Dependency Injection allows us to more elegantly solve this problem by only injecting the dependencies we need, when we
-need them, without the need for any hard coded dependencies at all.
+依赖注入使我们可以更加优雅地解决这个问题。我们只要在需要的时候注入需要的依赖，而根本不用写任何硬编码的依赖。
 
-### Dependency Inversion Principle
+### 依赖反转原则
 
-Dependency Inversion Principle is the "D" in the S.O.L.I.D set of object oriented design principles that states one
-should *"Depend on Abstractions. Do not depend on concretions."*. Put simply, this means our dependencies should be
-interfaces/contracts or abstract classes rather than concrete implementations. We can easily refactor the above example
-to follow this principle.
+面向对象设计原则的 S.O.L.I.D 集合强调应当**「依赖于抽象，而不要依赖于具体」**，而依赖反转原则（Dependency Inversion Principle）就是 S.O.L.I.D 中的「D」。简单来说，依赖反转原则就是要求我们的依赖应当是接口/合约或者抽象类，而不应该是具体的实现。我们可以根据这一原则把上面的例子简单地重构一下。
 
 {% highlight php %}
 <?php
@@ -48,14 +39,8 @@ interface AdapterInterface {}
 class MysqlAdapter implements AdapterInterface {}
 {% endhighlight %}
 
-There are several benefits to the `Database` class now depending on an interface rather than a concretion.
+`Database` 类现在依赖的是一个接口，而不是一个具体实现。这样做有很多好处。
 
-Consider that you are working in a team and the adapter is being worked on by a colleague. In our first example, we
-would have to wait for said colleague to finish the adapter before we could properly mock it for our unit tests. Now
-that the dependency is an interface/contract we can happily mock that interface knowing that our colleague will build
-the adapter based on that contract.
+假如你在一个团队里工作，而适配器是由一个同事编写的。在第一个例子中，我们必须等待同事完成了适配器的开发才能够在我们的单元测试中使用，而现在依赖变成了一个接口/合约，我们就可以模拟这个接口，而且我们知道同事会基于这个合约来编写适配器。
 
-An even bigger benefit to this method is that our code is now much more scalable. If a year down the line we decide
-that we want to migrate to a different type of database, we can write an adapter that implements the original interface
-and inject that instead, no more refactoring would be required as we can ensure that the adapter follows the contract
-set by the interface.
+这个做法更大的好处是，代码的扩展性得到了极大的增强。如果一年之后我们决定迁移到另一种不同的数据库，我们可以重新编写一个适配器，实现原来的接口，然后注入进去。不需要任何更多的重构，因为我们可以确定适配器遵守着接口所定下的合约。

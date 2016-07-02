@@ -1,28 +1,26 @@
 ---
+title: 命令行接口
 isChild: true
 anchor:  command_line_interface
 ---
 
-## Command Line Interface {#command_line_interface_title}
+## 命令行接口 {#command_line_interface_title}
 
-PHP was created to write web applications, but is also useful for scripting command line interface (CLI) programs.
-Command line PHP programs can help automate common tasks like testing, deployment, and application administration.
+PHP 创建之初是用来编写 web 应用程序的，但是用它来编写命令行接口（command line interface，CLI）的程序也同样实用。命令行的 PHP 程序可以用来自动化常见的任务，例如测试、部署和程序管理等等。
 
-CLI PHP programs are powerful because you can use your app's code directly without having to create and secure a web
-GUI for it. Just be sure **not** to put your CLI PHP scripts in your public web root!
+命令行 PHP 程序非常强大，你可以直接使用你的应用的代码，而无需创建和维护一个 web 图形界面。只要确保别把你的命令行 PHP 脚本放到你的公共 web 目录就行！
 
-Try running PHP from your command line:
+试着在你的命令行里运行 PHP：
 
 {% highlight console %}
 > php -i
 {% endhighlight %}
 
-The `-i` option will print your PHP configuration just like the [`phpinfo()`][phpinfo] function.
+`-i` 选项会像 [`phpinfo()`][phpinfo] 函数那样输出你的 PHP 配置信息。
 
-The `-a` option provides an interactive shell, similar to ruby's IRB or python's interactive shell. There are a number
-of other useful [command line options][cli-options], too.
+`-a` 选项可以启动一个交互式 shell，就像 Ruby 的 IRB 以及 Python 的交互式 shell 那样。除此之外还有其他很多有用的 [命令行选项][cli-options]。
 
-Let's write a simple "Hello, $name" CLI program. To try it out, create a file named `hello.php`, as below.
+我们来写一个简单的「Hello, $name」命令行程序吧。建立一个名叫 `hello.php` 的文件，内容如下：
 
 {% highlight php %}
 <?php
@@ -34,14 +32,11 @@ $name = $argv[1];
 echo "Hello, $name\n";
 {% endhighlight %}
 
-PHP sets up two special variables based on the arguments your script is run with. [`$argc`][argc] is an integer
-variable containing the argument *count* and [`$argv`][argv] is an array variable containing each argument's *value*.
-The first argument is always the name of your PHP script file, in this case `hello.php`.
+PHP 会基于你运行脚本时提供的参数建立两个特殊的变量。[`$argc`][argc] 是一个整数，表示参数的**个数**，而 [`$argv`][argv] 则是一个数组，其中包含每一个参数的**值**。第一个参数永远都是你的 PHP 脚本文件的名字，在这里就是 `hello.php`。
 
-The `exit()` expression is used with a non-zero number to let the shell know that the command failed. Commonly used
-exit codes can be found [here][exit-codes].
+`exit()` 与一个非 0 数字搭配使用，可以告诉 shell 这个命令执行失败了。常用的退出代码可以在[这里][exit-codes]找到。
 
-To run our script, above, from the command line:
+要在运行上面的脚本，在命令行中输入：
 
 {% highlight console %}
 > php hello.php
@@ -51,8 +46,8 @@ Hello, world
 {% endhighlight %}
 
 
- * [Learn about running PHP from the command line][php-cli]
- * [Learn about setting up Windows to run PHP from the command line][php-cli-windows]
+ * [了解在命令行中运行 PHP][php-cli]
+ * [了解如何配置 Windows 从而在命令行中运行 PHP][php-cli-windows]
 
 
 [phpinfo]: http://php.net/function.phpinfo

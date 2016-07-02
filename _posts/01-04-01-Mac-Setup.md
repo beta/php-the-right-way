@@ -1,64 +1,51 @@
 ---
+title: 在 Mac 上配置
 isChild: true
 anchor:  mac_setup
 ---
 
-## Mac Setup {#mac_setup_title}
+## 在 Mac 上配置 {#mac_setup_title}
 
-OS X comes prepackaged with PHP but it is normally a little behind the latest stable. Mavericks has 5.4.17,
-Yosemite has 5.5.9 and El Capitan has 5.5.29, but with PHP 7.0 out that is often not good enough.
+OS X 预装了 PHP，但是通常都要比最新的稳定版本落后一些。Mavericks 预装的版本是 5.4.17，Yosemite 是 5.5.9，而 El Capitan 则是 5.5.29，但是在 PHP 7.0 发布之后这些预装的版本都不那么好了。
 
-There are multiple ways to install PHP on OS X.
+在 OS X 上安装 PHP 有很多种方法。
 
-### Install PHP via Homebrew
+### 使用 Homebrew 安装 PHP
 
-[Homebrew] is a powerful package manager for OS X, which can help you install PHP and various extensions easily.
-[Homebrew PHP] is a repository that contains PHP-related "formulae" for Homebrew, and will let you install PHP.
+[Homebrew] 是 OS X 平台的一个功能强大的包管理器，可以帮助你方便地安装 PHP 以及各种扩展。[Homebrew PHP] 是一个包含着用于 Homebrew 的、与 PHP 相关的各种「配方」的仓库，可以让你用来安装 PHP。
 
-At this point, you can install `php53`, `php54`, `php55`, `php56` or `php70` using the `brew install` command, and switch
-between them by modifying your `PATH` variable. Alternatively you can use [brew-php-switcher][brew-php-switcher] which will switch automatically for you.
+到目前为止，你可以通过 `brew install` 命令来安装 `php53`、`php54`、`php55`、`php56` 或者 `php70` 这些版本，并且通过修改 `PATH` 变量来切换不同的版本。除此之外你还可以用 [brew-php-switcher][brew-php-switcher] 来自动切换。
 
-### Install PHP via Macports
+### 使用 Macports 安装 PHP
 
-The [MacPorts] Project is an open-source community initiative to design an
-easy-to-use system for compiling, installing, and upgrading either
-command-line, X11 or Aqua based open-source software on the OS X operating
-system.
+[MacPorts] 是一个由社区发起的开源项目，设计了一个非常易于使用的系统用来编译、安装和更新 OS X 操作系统上的基于命令行、X11 和 Aqua 的开源软件。
 
-MacPorts supports pre-compiled binaries, so you don't need to recompile every
-dependencies from the source tarball files, it saves your life if you don't
-have any package installed on your system.
+MacPorts 提供了预先编译好的二进制文件，因此你不需要从源码包重新编译每一个依赖项。如果你的系统里没有安装任何包的话，MacPort 可以大大节约你的时间。
 
-At this point, you can install `php54`, `php55`, `php56` or `php70` using the `port install` command, for example:
+到目前为止，你可以通过 `port install` 命令来安装 `php54`、`php55`、`php56` 和 `php70` 这些版本。例如：
 
     sudo port install php56
     sudo port install php70
 
-And you can run `select` command to switch your active php:
+你可以运行 `select` 命令来切换当前使用的 PHP 版本：
 
     sudo port select --set php php70
 
-### Install PHP via phpbrew
+### 使用 phpbrew 安装 PHP
 
-[phpbrew] is a tool for installing and managing multiple PHP versions. This can be really useful if two different
-applications/projects require different versions of PHP, and you are not using virtual machines.
+[phpbrew] 是一个用来安装和管理多个 PHP 版本的工具。如果两个应用程序或者项目分别使用了不同版本的 PHP，那么这个工具会非常实用，你也不需要再使用虚拟机了。
 
-### Install PHP via Liip's binary installer
+### 使用 Liip 的二进制安装程序安装 PHP
 
-Another popular option is [php-osx.liip.ch] which provides one liner installation methods for versions 5.3 through 7.0.
-It doesn't overwrite the php binaries installed by Apple, but installs everything in a separate location (/usr/local/php5).
+还有一个非常热门的方法是使用 [php-osx.liip.ch] 提供的一键式安装工具来安装从 5.3 到 7.0 的各种版本。它不会覆盖掉苹果自带的 PHP 二进制文件，而是安装到一个独立的位置（例如 /usr/local/php5）。
 
-### Compile from Source
+### 从源代码编译
 
-Another option that gives you control over the version of PHP you install, is to [compile it yourself][mac-compile].
-In that case be sure to have installed either [Xcode][xcode-gcc-substitution] or Apple's substitute
-["Command Line Tools for XCode"] downloadable from Apple's Mac Developer Center.
+还有一个途径可以让你自由控制你所安装的 PHP 版本，那就是[自己编译][mac-compile]。如果你要自己编译的话，确保你已经安装了 [Xcode][xcode-gcc-substitution] 或者苹果的[「XCode 命令行工具」]，可以从苹果的 Mac 开发人员中心下载到。
 
-### All-in-One Installers
+### 多合一安装包
 
-The solutions listed above mainly handle PHP itself, and do not supply things like Apache, Nginx or a SQL server.
-"All-in-one" solutions such as [MAMP][mamp-downloads] and [XAMPP][xampp] will install these other bits of software for
-you and tie them all together, but ease of setup comes with a trade-off of flexibility.
+以上列出的方法大多只用来安装 PHP 本体，不会包括诸如 Apache、Nginx 或者一个 SQL 服务器之类的东西。一些「多合一」的方法可以把这些软件捆绑起来一起安装，例如 [MAMP][mamp-downloads] 和 [XAMPP][xampp]，但是伴随着简易的安装而来的则是在灵活性上的妥协。
 
 
 [Homebrew]: http://brew.sh/
@@ -68,7 +55,7 @@ you and tie them all together, but ease of setup comes with a trade-off of flexi
 [php-osx.liip.ch]: http://php-osx.liip.ch/
 [mac-compile]: http://php.net/install.macosx.compile
 [xcode-gcc-substitution]: https://github.com/kennethreitz/osx-gcc-installer
-["Command Line Tools for XCode"]: https://developer.apple.com/downloads
+[「XCode 命令行工具」]: https://developer.apple.com/downloads
 [mamp-downloads]: http://www.mamp.info/en/downloads/
 [xampp]: http://www.apachefriends.org/en/xampp.html
 [brew-php-switcher]: https://github.com/philcook/brew-php-switcher

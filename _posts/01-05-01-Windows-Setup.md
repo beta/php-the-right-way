@@ -1,27 +1,20 @@
 ---
+title: 在 Windows 上配置
 isChild: true
 anchor:  windows_setup
 ---
 
-## Windows Setup {#windows_setup_title}
+## 在 Windows 上配置 {#windows_setup_title}
 
-You can download the binaries from [windows.php.net/download][php-downloads]. After the extraction of PHP, it is recommended to set the [PATH][windows-path] to the root of your PHP folder (where php.exe is located) so you can execute PHP from anywhere.
+你可以从 [windows.php.net/download][php-downloads] 下载到 PHP 的二进制文件。解压之后，推荐你将 PHP 的根目录（php.exe 所在的地方）添加到 [PATH][windows-path] 中从而可以在任何地方执行 PHP。
 
-For learning and local development you can use the built in webserver with PHP 5.4+ so you don't need to worry about
-configuring it. If you would like an "all-in-one" which includes a full-blown webserver and MySQL too then tools such
-as the [Web Platform Installer][wpi], [XAMPP][xampp], [EasyPHP][easyphp], [OpenServer][openserver] and [WAMP][wamp] will
-help get a Windows development environment up and running fast. That said, these tools will be a little different from
-production so be careful of environment differences if you are working on Windows and deploying to Linux.
+如果是用于学习和本地开发，你可以使用从 PHP 5.4 起内置的 web 服务器，不需要额外的配置。如果你想使用一个集成了全功能 web 服务器和 MySQL 的「多合一」安装包的话，可以使用例如 [Web Platform Installer][wpi]、[XAMPP][xampp]、[EasyPHP][easyphp]、[OpenServer][openserver] 以及 [WAMP][wamp] 之类的工具来快速搭建一个 Windows 下的开发环境。顺便提一句，这些工具与生产环境相比会有一些小小的不同，因此如果你在 Windows 上开发而在 Linux 上面部署，你需要格外注意这些环境上的差别。
 
-If you need to run your production system on Windows then IIS7 will give you the most stable and best performance. You
-can use [phpmanager][phpmanager] (a GUI plugin for IIS7) to make configuring and managing PHP simple. IIS7 comes with
-FastCGI built in and ready to go, you just need to configure PHP as a handler. For support and additional resources
-there is a [dedicated area on iis.net][php-iis] for PHP.
+如果你需要在 Windows 上面运行你的生产系统，那么 IIS7 会是最稳定的、最高性能的选择。你可以使用 [phpmanager][phpmanager]（一个 IIS7 的 GUI 插件）来简化 PHP 的配置和管理。IIS7 内置了 FastCGI，你只需要将 PHP 配置为一个处理程序即可。在 [iis.net 的一个专用板块][php-iis] 里面可以找到更多的支持信息和额外的资源。
 
-Generally running your application on different environment in development and production can lead to strange bugs popping up when you go
-live. If you are developing on Windows and deploying to Linux (or anything non-Windows) then you should consider using a [Virtual Machine](/#virtualization_title).
+通常来说，在不同的开发和生产环境上运行程序通常会在上线时带来一些奇怪的错误。如果你在 Windows 上面开发同时又要部署到 Linux（或者其他的非 Windows 系统），那么你应该考虑使用一个[虚拟机](/#virtualization_title)。
 
-Chris Tankersley has a very helpful blog post on what tools he uses to do [PHP development using Windows][windows-tools].
+Chris Tankersley 的一篇博客文章介绍了他[在 Windows 上开发 PHP 所使用的工具][windows-tools]。
 
 [easyphp]: http://www.easyphp.org/
 [phpmanager]: http://phpmanager.codeplex.com/

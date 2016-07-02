@@ -1,5 +1,6 @@
 ---
+title: 语言重点
 anchor: language_highlights
 ---
 
-# Language Highlights {#language_highlights_title}
+# 语言重点 {#language_highlights_title}

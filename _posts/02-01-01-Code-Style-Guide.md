@@ -1,48 +1,34 @@
 ---
+title: 代码风格指南
 anchor: code_style_guide
 ---
 
-# Code Style Guide {#code_style_guide_title}
+# 代码风格指南 {#code_style_guide_title}
 
-The PHP community is large and diverse, composed of innumerable libraries, frameworks, and components. It is common for
-PHP developers to choose several of these and combine them into a single project. It is important that PHP code adhere
-(as close as possible) to a common code style to make it easy for developers to mix and match various libraries for
-their projects.
+PHP 社区是非常庞大而且多样化的，包括难以计数的库、框架和组件。对于 PHP 开发者来说，从其中选择几件组合到一个单独的项目中是很常见的事情。让 PHP 代码都（尽可能地）遵守一个共同的代码风格是很重要的，可以让开发者很轻松地组合和搭配各种不同的库并用于自己的项目。
 
-The [Framework Interop Group][fig] has proposed and approved a series of style recommendations. Not all of them related
-to code-style, but those that do are [PSR-0][psr0], [PSR-1][psr1], [PSR-2][psr2] and [PSR-4][psr4]. These
-recommendations are merely a set of rules that some projects like Drupal, Zend, Symfony, CakePHP, phpBB, AWS SDK,
-FuelPHP, Lithium, etc are starting to adopt. You can use them for your own projects, or continue to use your own
-personal style.
+[框架互操作组织（Framework Interop Group）][fig] 提出并通过了一系列风格建议。它们并不都是有关代码风格，真正与风格相关的有 [PSR-0][psr0]、[PSR-1][psr1]、[PSR-2][psr2] 和 [PSR-4][psr4]。这些建议只是一系列规则，并且正在被 Drupal、Zend、Symfony、CakePHP、phpBB、AWS SDK、FuelPHP、Lithium 等等这些项目所采用。你可以在自己的项目中应用这些建议，或者也可以继续用你自己的风格。
 
-Ideally you should write PHP code that adheres to a known standard. This could be any combination of PSR's, or one
-of the coding standards made by PEAR or Zend. This means other developers can easily read and work with your code, and
-applications that implement the components can have consistency even when working with lots of third-party code.
+理想情况下，你应该按照一个已有的标准来编写 PHP 代码，这个标准可以是几个 PSR 的任意组合，或者由 PEAR 或者 Zend 提出的一些编码规范，从而让其他的开发者可以轻松的阅读和使用你的代码，并且让实现了许多组件的程序可以与大量第三方代码共存。
 
-* [Read about PSR-0][psr0]
-* [Read about PSR-1][psr1]
-* [Read about PSR-2][psr2]
-* [Read about PSR-4][psr4]
-* [Read about PEAR Coding Standards][pear-cs]
-* [Read about Symfony Coding Standards][symfony-cs]
+* [了解 PSR-0][psr0]
+* [了解 PSR-1][psr1]
+* [了解 PSR-2][psr2]
+* [了解 PSR-4][psr4]
+* [了解 PEAR 编码规范][pear-cs]
+* [了解 Symfony 编码规范][symfony-cs]
 
-You can use [PHP_CodeSniffer][phpcs] to check code against any one of these recommendations, and plugins for text
-editors like [Sublime Text 2][st-cs] to be given real time feedback.
+你可以用 [PHP_CodeSniffer][phpcs] 来根据以上任意一个代码风格建议检查自己的代码，还可以使用诸如 [Sublime Text 2][st-cs] 的文本编辑器的一些插件来提供实时的反馈。
 
-You can fix the code layout automatically by using one of the two following tools. One is the [PHP Coding Standards Fixer][phpcsfixer] which has a very well tested codebase.
-Another option is [php.tools][phptools], which is made popular by the [sublime-phpfmt][sublime-phpfmt] editor plugin. While being newer, it makes great improvements in performance, meaning real-time editor fixing is more fluid.
+你可以使用以下工具之一来自动调整代码的布局。首先是 [PHP Coding Standards Fixer][phpcsfixer]，它有一个测试非常完备的代码库；然后是 [php.tools][phptools]，由 [sublime-phpfmt][sublime-phpfmt] 插件发扬光大，虽然相比前者更新一些，但是它在性能上表现优异，可以带来更加流畅的编辑器实时调整。
 
-And you can run phpcs manually from shell:
+你还可以在 shell 中手动运行 phpcs：
 
     phpcs -sw --standard=PSR2 file.php
 
-It will show errors and descriptions how to fix them.
-It can also be helpful to include this command in a git hook.
-That way branches which contain violations against the chosen standard cannot enter the repository
-until those violations have been fixed.
+它会列出错误并且告诉你如何修复。可以把这个工具集成到 git hook 中，这样包含与选定的规范不符的代码的分支在修复之前就无法进入到仓库中。
 
-English is preferred for all symbol names and code infrastructure. Comments may be written in any language easily
-readable by all current and future parties who may be working on the codebase.
+推荐使用英文来编写所有符号名和代码架构。注释可以用任何语言书写，从而让当前以及之后将会使用这个代码库的人更加容易阅读。
 
 
 [fig]: http://www.php-fig.org/

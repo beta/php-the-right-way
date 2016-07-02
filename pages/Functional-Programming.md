@@ -1,40 +1,34 @@
 ---
 layout: page
-title:  Functional Programming in PHP
+title:  PHP 中的函数式编程
 sitemap: true
 ---
 
-# Functional Programming in PHP
+# PHP 中的函数式编程
 
-PHP supports first-class functions, meaning that a function can be assigned to a variable. Both user-defined and
-built-in functions can be referenced by a variable and invoked dynamically. Functions can be passed as arguments to
-other functions and a function can return other functions (a feature called higher-order functions).
+PHP 支持一等函数，也就是说可以把函数赋值给一个变量。不论是用户定义的还是内置的函数都可以用一个变量来引用并且动态地调用。一个函数可以作为参数传递给其他的函数，函数也可以返回其他的函数，这个特性叫做高阶函数。
 
-Recursion, a feature that allows a function to call itself, is supported by the language, but most of the PHP code
-focus is on iteration.
+PHP 也支持递归，也就是允许一个函数调用自己的特性，但是大部分 PHP 代码都更着重于迭代。
 
-Anonymous functions (with support for closures) have been present since PHP 5.3 (2009).
+PHP 5.3（2009）引入了匿名函数（以及对闭包的支持）。
 
-PHP 5.4 added the ability to bind closures to an object's scope and also improved support for callables such that they
-can be used interchangeably with anonymous functions in almost all cases.
+PHP 5.4 增加了将一个闭包绑定到一个对象的范围中的能力，同时也改善了对回调类型（Callable）的支持，使其与匿名函数在几乎任何情况下都可以相互替代。
 
-The most common usage of higher-order functions is when implementing a strategy pattern. The built-in `array_filter()`
-function asks both for the input array (data) and a function (a strategy or a callback) used as a filter function on
-each array item.
+高阶函数最常见的用例是实现策略模式。内置的 `array_filter()` 函数既要求一个输入的数组（数据），同时又要求提供一个函数（策略，或者一个回调函数）用作对每个数组元素的过滤函数。
 
 {% highlight php %}
 <?php
 $input = array(1, 2, 3, 4, 5, 6);
 
-// Creates a new anonymous function and assigns it to a variable
+// 建立一个匿名函数并赋值给一个变量
 $filter_even = function($item) {
     return ($item % 2) == 0;
 };
 
-// Built-in array_filter accepts both the data and the function
+// 内置的 array_filter 函数接受数据和函数
 $output = array_filter($input, $filter_even);
 
-// The function doesn't need to be assigned to a variable. This is valid too:
+// 函数不一定要赋值给变量，这样也是可以的：
 $output = array_filter($input, function($item) {
     return ($item % 2) == 0;
 });
@@ -42,19 +36,16 @@ $output = array_filter($input, function($item) {
 print_r($output);
 {% endhighlight %}
 
-A closure is an anonymous function that can access variables imported from the outside scope without using any global
-variables. Theoretically, a closure is a function with some arguments closed (e.g. fixed) by the environment when it is
-defined. Closures can work around variable scope restrictions in a clean way.
+闭包是一个不需要使用任何全局变量就可以访问从外部作用域导入的变量的匿名函数。理论上来讲，闭包是一个函数，伴随着一些在定义闭包时由环境封闭（例如固定）起来的参数。闭包可以以一种干净的方式来处理变量的作用域。
 
-In the next example we use closures to define a function returning a single filter function for `array_filter()`, out
-of a family of filter functions.
+接下来的例子中，我们使用闭包定义了一个为 `array_filter()` 返回一个过滤器的函数，这个过滤器使用一个过滤器函数族群产生。
 
 {% highlight php %}
 <?php
 /**
- * Creates an anonymous filter function accepting items > $min
+ * 建立一个匿名过滤函数，接受大于 $min 的元素
  *
- * Returns a single filter out of a family of "greater than n" filters
+ * 从一个「大于 n」的过滤函数族群中返回一个过滤器
  */
 function criteria_greater_than($min)
 {
@@ -65,23 +56,19 @@ function criteria_greater_than($min)
 
 $input = array(1, 2, 3, 4, 5, 6);
 
-// Use array_filter on a input with a selected filter function
+// 使用 array_filter 以及选定的过滤函数来处理输入
 $output = array_filter($input, criteria_greater_than(3));
 
 print_r($output); // items > 3
 {% endhighlight %}
 
-Each filter function in the family accepts only elements greater than some minimum value. Single filter returned by
-`criteria_greater_than` is a closure with `$min` argument closed by the value in the scope (given as an argument when
-`criteria_greater_than` is called).
+族群中的每一个过滤函数只会接受大于某一个最小值的元素。`criteria_greater_than` 所返回的一个过滤器是一个具有 `$min` 参数的闭包，这个参数被封闭在作用域中（在调用 `criteria_greater_than` 时传递进来）。
 
-Early binding is used by default for importing `$min` variable into the created function. For true closures with late
-binding one should use a reference when importing. Imagine a templating or input validation library, where closure is
-defined to capture variables in scope and access them later when the anonymous function is evaluated.
+向创建的函数中导入 `$min` 变量时默认使用的是早期绑定。要使用后期绑定的、真正的闭包来说，应当在导入时使用一个引用。想象有这么一个模板库或者一个输入验证库，闭包用来将变量捕获到作用域中，并且在匿名函数被调用时才回进行访问。
 
-* [Read about Anonymous functions][anonymous-functions]
-* [More details in the Closures RFC][closures-rfc]
-* [Read about dynamically invoking functions with `call_user_func_array()`][call-user-func-array]
+* [了解匿名函数][anonymous-functions]
+* [闭包 RFC 的更多信息][closures-rfc]
+* [了解如何使用 `call_user_func_array()` 动态调用函数][call-user-func-array]
 
 
 [anonymous-functions]: http://php.net/functions.anonymous

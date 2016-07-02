@@ -1,5 +1,6 @@
 ---
+title:  安全
 anchor: security
 ---
 
-# Security {#security_title}
+# 安全 {#security_title}

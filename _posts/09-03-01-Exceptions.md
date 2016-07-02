@@ -1,32 +1,23 @@
 ---
+title:   异常
 isChild: true
 anchor:  exceptions
 ---
 
-## Exceptions {#exceptions_title}
+## 异常 {#exceptions_title}
 
-Exceptions are a standard part of most popular programming languages, but they are often overlooked by PHP programmers.
-Languages like Ruby are extremely Exception heavy, so whenever something goes wrong such as a HTTP request failing, or
-a DB query goes wrong, or even if an image asset could not be found, Ruby (or the gems being used) will throw an
-exception to the screen meaning you instantly know there is a mistake.
+异常是很多流行的编程语言中一个标准的部分，但是 PHP 开发者们通常都会忽略它。类似 Ruby 的语言极度依赖异常，因此只要出了什么问题，比如 HTTP 请求失败了，或者数据库查询出错了，更或者找不到一个图片资源，Ruby（或者所使用的 gem）都会向屏幕抛出一个异常，来立刻让你知道发生了错误。
 
-PHP itself is fairly lax with this, and a call to `file_get_contents()` will usually just get you a `FALSE` and a
-warning.
-Many older PHP frameworks like CodeIgniter will just return a false, log a message to their proprietary logs and maybe
-let you use a method like `$this->upload->get_error()` to see what went wrong. The problem here is that you have to go
-looking for a mistake and check the docs to see what the error method is for this class, instead of having it made
-extremely obvious.
+PHP 对异常的处理可谓是相当马虎，调用 `file_get_contents()` 通常只会给你一个 `false` 以及一个警告。许多早期的 PHP 框架，例如 CodeIgniter，只会返回一个 `false`，向它专有的日志记录一条信息，然后可能允许你使用类似 `$this->upload->get_error()` 的方法来查看究竟发生了什么错误。这样做有个问题，就是你必须去亲自查找一个错误并且翻看文档来了解某个类查询错误的方法是什么，而不是让它来得更加明显一些。
 
-Another problem is when classes automatically throw an error to the screen and exit the process. When you do this you
-stop another developer from being able to dynamically handle that error. Exceptions should be thrown to make a
-developer aware of an error; they then can choose how to handle this. E.g.:
+如果类自动向屏幕抛出异常并且停止执行，那么就会带来另外一个问题：如果你这样做，那么另一个开发者就无法动态地处理这个错误。抛出异常的目的是让开发者知晓一个错误的发生，他们就可以选择是否来处理这个错误。例如：
 
 {% highlight php %}
 <?php
 $email = new Fuel\Email;
-$email->subject('My Subject');
-$email->body('How the heck are you?');
-$email->to('guy@example.com', 'Some Guy');
+$email->subject('我的主题');
+$email->body('你究竟怎么样？');
+$email->to('guy@example.com', '某人');
 
 try
 {
@@ -34,43 +25,38 @@ try
 }
 catch(Fuel\Email\ValidationFailedException $e)
 {
-    // The validation failed
+    // 验证失败
 }
 catch(Fuel\Email\SendingFailedException $e)
 {
-    // The driver could not send the email
+    // 驱动无法发送邮件
 }
 finally
 {
-    // Executed regardless of whether an exception has been thrown, and before normal execution resumes
+    // 不论是否抛出异常都要执行的代码，在正常的执行继续之前执行
 }
 {% endhighlight %}
 
-### SPL Exceptions
+### SPL 异常
 
-The generic `Exception` class provides very little debugging context for the developer; however, to remedy this, it is
-possible to create a specialized `Exception` type by sub-classing the generic `Exception` class:
+通用的 `Exception` 类为开发者的调试提供了非常有限的上下文。不过要改善这一点的话，可以通过建立 `Exception` 类的子类来创建一个专门的异常类型。
 
 {% highlight php %}
 <?php
 class ValidationException extends Exception {}
 {% endhighlight %}
 
-This means you can add multiple catch blocks and handle different Exceptions differently. This can lead to the
-creation of a <em>lot</em> of custom Exceptions, some of which could have been avoided using the SPL Exceptions
-provided in the [SPL extension][splext].
+你可以用多个 `catch` 代码块来分别处理不同种类的异常。这样做会导致创建**许多**自定义的异常，其中某些异常是可以用 [SPL 扩展][splext]中提供的 SPL 异常来替代的。
 
-If for example you use the `__call()` Magic Method and an invalid method is requested then instead of throwing a
-standard Exception which is vague, or creating a custom Exception just for that, you could just
-`throw new BadMethodCallException;`.
+比如说，如果你使用魔术方法 `__cal()` 请求了一个无效的方法，那么你可以直接 `throw new BadMethodCallException;`，而不是抛出一个标准的、模糊的 `Exception`，也不用为之建立一个自定义的异常类。
 
-* [Read about Exceptions][exceptions]
-* [Read about SPL Exceptions][splexe]
-* [Nesting Exceptions In PHP][nesting-exceptions-in-php]
-* [Exception Best Practices in PHP 5.3][exception-best-practices53]
+* [了解异常][exceptions]
+* [了解 SPL 异常][splexe]
+* [PHP 中的嵌套异常][nesting-exceptions-in-php]
+* [PHP 5.3 使用异常的最佳实践][exception-best-practices53]
 
 
-[splext]: /#standard_php_library
+[splext]: #standard_php_library
 [exceptions]: http://php.net/language.exceptions
 [splexe]: http://php.net/spl.exceptions
 [nesting-exceptions-in-php]: http://www.brandonsavage.net/exceptional-php-nesting-exceptions-in-php/

@@ -1,29 +1,20 @@
-# Welcome
+# 欢迎
 
-There's a lot of outdated information on the Web that leads new PHP users astray,
-propagating bad practices and insecure code. _PHP: The Right Way_ is an easy-to-read,
-quick reference for PHP popular coding standards, links to authoritative tutorials
-around the Web and what the contributors consider to be best practices at the present
-time.
+在网络中有许多过时的信息，传播着不良的编程习惯和不安全的代码，让 PHP 用户们误入歧途。「PHP 之道」是一份针对流行的 PHP 代码标准的易于阅读的快速参考手册，链接到网络上各种权威的教程以及贡献者们所认为的当前最好的最佳实践。
 
-_There is no canonical way to use PHP_. This website aims to introduce new PHP
-developers to some topics which they may not discover until it is too late, and aims
-to give seasoned pros some fresh ideas on those topics they've been doing for years
-without ever reconsidering. This website will also not tell you which tools to use, but
-instead offer suggestions for multiple options, when possible explaining the differences
-in approach and use-case.
+**PHP 没有标准的用法。**这个网站的目的是向 PHP 新手们尽早介绍一些内容以免为时已晚，以及为经验丰富的开发者们在他们长久以来一直在做却从未认真反思过的内容上提供一些全新的思考。这个网站不会直接告诉你应该使用哪些工具，而是会提供给你一系列建议和选择，并且尽可能介绍它们在使用方法和情景上的不同。
 
-This is a living document and will continue to be updated with more helpful information
-and examples as they become available.
+这份文档将会持续更新，带来更多有所帮助的内容和案例。
 
-## Translations
+## 翻译 {#translations}
 
-_PHP: The Right Way_ is translated into many different languages:
+「PHP 之道」已经被翻译成各种语言的版本：
 
 * [English](http://www.phptherightway.com)
 * [Bulgarian](http://bg.phptherightway.com/)
-* [Chinese (Simplified)](http://laravel-china.github.io/php-the-right-way/)
-* [Chinese (Traditional)](http://laravel-taiwan.github.io/php-the-right-way)
+* [简体中文（新）](http://beta.github.io/php-the-right-way)
+* [简体中文](http://laravel-china.github.io/php-the-right-way/)
+* [繁体中文](http://laravel-taiwan.github.io/php-the-right-way)
 * [French](http://eilgin.github.io/php-the-right-way/)
 * [German](http://rwetzlmayr.github.io/php-the-right-way/)
 * [Indonesian](http://id.phptherightway.com/)
@@ -42,16 +33,15 @@ _PHP: The Right Way_ is translated into many different languages:
 * [Turkish](http://hkulekci.github.io/php-the-right-way/)
 * [Ukrainian](http://iflista.github.com/php-the-right-way/)
 
-## How to Contribute
+## 如何做出贡献 {#how-to-contribute}
 
-Help make this website the best resource for new PHP programmers! [Contribute on GitHub][1]
+帮助我们将这个网站变成 PHP 新手的最佳资源吧！[在 GitHub 上做出贡献][1]
 
-## Spread the Word!
+## 传播 {#spread-the-word}
 
-_PHP: The Right Way_ has web banner images you can use on your website. Show your support, and let new PHP developers
-know where to find good information!
+「PHP 之道」有一些 web 横幅图片，你可以用在你的网站上，展示你的支持，并且让 PHP 新手们知道可以在哪里找到更好的信息。
 
-[See Banner Images][2]
+[查看横幅图片][2]
 
 [1]: https://github.com/codeguy/php-the-right-way/tree/gh-pages
 [2]: /banners.html
